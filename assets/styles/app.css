@@ -1,3 +1,45 @@
 body {
-    background-color: skyblue;
+    background-color: #F29F05;
 }
+.position {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.typo_jouer_espace {
+    color: black;
+    text-align: center;
+    padding-bottom: 4px;
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes clignoter {
+    0% {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+.bg-custom{
+    color: #0D0D0D;
+}
+/* Color Theme Swatches in Hex */
+.Illustration-1-hex { color: #F2E638; }
+.Illustration-2-hex { color: #F29F05; }
+.Illustration-3-hex { color: #F28705; }
+.Illustration-4-hex { color: #D9A76A; }
+.Illustration-5-hex { background-color: #0D0D0D; }
