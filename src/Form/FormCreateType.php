@@ -18,12 +18,13 @@ class FormCreateType extends AbstractType
             ->add('title', TextType::class,[
             'attr'=> [
                 'placeholder' => 'New Wish',
-                'size' => '80%'
+                'size' => 81
             ]
         ])
             ->add('description', TextareaType::class,[
                 'attr'=> [
-                    'placeholder' => 'Write your description'
+                    'placeholder' => 'Write your description',
+                    'cols' => 83
                 ]
             ])
 
@@ -32,11 +33,15 @@ class FormCreateType extends AbstractType
                 'attr' => [
                     'maxlength' => 50,
                     'class' => 'special-class',
-                    'placeholder' => 'Wisher\'s name'
+                    'placeholder' => 'Wisher\'s name',
+                    'size' => 81
                 ]
             ])
-            ->add('isPublished')
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                'value' => 'Engregistrer'
+                    ]
+            ])
         ;
     }
 

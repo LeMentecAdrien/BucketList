@@ -16,7 +16,7 @@
                         <h3 class="card-title text-center">{{ wishDetails.title }}</h3>
                         <p class="card-text"><strong>Author: </strong> {{ wishDetails.author }}</p>
                         <p class="card-text"><strong>Description: </strong> {{ wishDetails.description }}</p>
-                        <p class="card-text"><strong>Created date: </strong>{{ wishDetails.dateCreated|format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY") }}</p>
+                        <p class="card-text"><strong>Created date: </strong>{{ wishDetails.dateCreated|format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY HH:mm") }}</p>
                         <a href="/wish" class="btn btn-warning">Go back</a>
                     </div>
                 </div>

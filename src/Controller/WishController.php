@@ -36,7 +36,7 @@ class WishController extends AbstractController
         ]);
     }
 
-    #[Route('/wish/new', name: 'app_wish_new', methods: ['GET', 'POST'])]
+    #[Route('/wish/new', name: 'app_wish_new')]
     public function new(Request $request, EntityManagerInterface $entityManager) : Response {
 
         $wish = new Wish();
@@ -46,6 +46,8 @@ class WishController extends AbstractController
             $entityManager->persist($wish);
             $entityManager->flush();
         //    dump($wish);die;
+            $this->addFlash('success', 'Le souhait a été enregistré');
+            return $this->redirectToRoute('app_wish');
             }
 
         return $this->render('wish/newWish.html.twig', [
