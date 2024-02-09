@@ -97,11 +97,11 @@ class Wish
     }
 
     #[ORM\PrePersist]
-    public function setDateCreated(): void
+    public function setDateCreated(): static
     {
-        if ($this->dateCreated === null) {
-            $this->dateCreated = new \DateTime();
-        }
+        $this->dateCreated = new \DateTime();
+
+        return $this;
     }
 
 
@@ -110,7 +110,7 @@ class Wish
         return $this->dateUpdated;
     }
     #[ORM\PreUpdate]
-    public function setDateUpdated(?\DateTimeInterface $dateUpdated): static
+    public function setDateUpdated(): static
     {
         $this->dateUpdated = new \DateTime();
 
