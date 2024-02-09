@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4">New Wish</h1>
+            <table>
+            {{ form_start(form) }}
+            {{ form(form) }}
+
+{#            <button type="submit" class="btn btn-primary">Enregistrer</button>#}
+            {{ form_end(form) }}
+            </table>
+
+    </div>
+{% endblock %}

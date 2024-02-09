@@ -37,9 +37,68 @@ body {
 .bg-custom{
     color: #0D0D0D;
 }
+
+
 /* Color Theme Swatches in Hex */
 .Illustration-1-hex { color: #F2E638; }
 .Illustration-2-hex { color: #F29F05; }
 .Illustration-3-hex { color: #F28705; }
 .Illustration-4-hex { color: #D9A76A; }
 .Illustration-5-hex { background-color: #0D0D0D; }
+
+
+.card-custom {
+    max-width: 60%;
+    margin: auto;
+}
+.btn-details:hover {
+    background-color: white;
+    color: #ffc107;
+    border-color: white;
+    color: black;
+}
+
+.rounded-image {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.rounded-image img {
+    width: 400px; /* Ajustez la taille selon vos besoins */
+    height: 400px; /* Ajustez la taille selon vos besoins */
+    object-fit: cover;
+    transition: all 0.3s ease; /* Transition pour le fondu */
+}
+
+.rounded-image img:hover {
+    transform: scale(1.2); /* Zoom au survol */
+}
+
+.fleur{
+    align-items: center;
+}
+/*label{*/
+/*    font-size: 16px;*/
+/*    font-weight: bold;*/
+/*    color: #333;*/
+/*}*/
+/*input{*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 5px;*/
+/*    padding: 0.5rem;*/
+/*    font-size: 1rem;*/
+/*    width: 60%;*/
+/*    margin-bottom: 1rem;*/
+/*}*/
+/*textarea {*/
+/*    width: 60%;*/
+/*    min-height: 100px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 5px;*/
+/*    padding: 0.5rem;*/
+/*    font-size: 1rem;*/
+/*}*/
+
+
+
+

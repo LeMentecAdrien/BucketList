@@ -4,7 +4,26 @@
 
 {% block body %}
 
-    <p>Bienvenue sur Détails</p>
+    <h1 class="m-4 text-center" >Wish - Détails</h1>
+
+
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">{{ wishDetails.title }}</h3>
+                        <p class="card-text"><strong>Author: </strong> {{ wishDetails.author }}</p>
+                        <p class="card-text"><strong>Description: </strong> {{ wishDetails.description }}</p>
+                        <p class="card-text"><strong>Created date: </strong>{{ wishDetails.dateCreated|format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY") }}</p>
+                        <a href="/wish" class="btn btn-warning">Go back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 {% endblock %}

@@ -16,10 +16,12 @@
 </head>
 <body>
 <header>
-    <div class="container-fluid m-2 Illustration-5-hex">
+    <div class="container-fluid Illustration-5-hex">
         <div class="d-flex align-items-center text-white w-100">
-            <img src="{{ asset('img/logo.png') }}" alt="" class="me-3">
-            <h3 class="m-0">Bucket-List</h3>
+            <a href="{{ path('app_main') }}" style=" text-decoration: none">
+                <img src="{{ asset('img/logo1.png') }}" alt="" class="m-1"></a>
+            <a href="{{ path('app_main') }}" style="text-decoration: none; color: inherit;"><h3 class="m-0" >Bucket-List</h3></a>
+
         </div>
 
         <nav class="navbar navbar-expand-lg Illustration-5-hex">
@@ -36,7 +38,7 @@
                             <a class="nav-link text-white" href="{{ path('app_about') }}">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ path('app_wish') }}">Liste de souhaits</a>
+                            <a class="nav-link text-white" href="{{ path('app_wish') }}">Wishes List</a>
                         </li>
                     </ul>
                 </div>
@@ -46,7 +48,7 @@
 </header>
 
 {% block body %}
-    {{ coucou }}
+
 {% endblock %}
 
 <footer class="footer mt-auto py-3 Illustration-5-hex position">

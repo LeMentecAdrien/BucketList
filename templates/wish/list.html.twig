@@ -4,51 +4,39 @@
 
 {% block body %}
 
-    <h1 class="typo_jouer_espace" style="text-align: center">Bienvenue sur Liste</h1>
+    <h1 class="typo_jouer_espace m-4" style="text-align: center">Welcome on Wishes List</h1>
 
-    <ol class="list-group list-group-numbered">
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-                Faire du saut en parachute
+
+    <div class="list-unstyled container card-custom ">
+        <ul class="list-unstyled">
+            {% for wishes in wish %}
+            <li>
+                <ol class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-start btn btn-warning">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <div>
+                                <h5>{{ wishes.title }}</h5>
+                            </div>
+                            <div class="ms-auto">
+                                <a href="{{ path('detail', {'id': wishes.id}) }}" type="button" class="btn btn-warning btn-details">Détails</a>
+
+                            </div>
+
+                        </div>
+
+                    </li>
+                </ol>
+                {% endfor %}
+        </ul>
+
+        <div class="d-flex justify-content-center align-items-center">
+            <div>
+                <img src="{{ asset('img/fleur.png') }}" alt="" class="img-fluid" style="transform: scale(1.7);">
             </div>
-            <span class="badge bg-primary rounded-pill"></span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-                Faire le tour du monde
-            </div>
-            <span class="badge bg-primary rounded-pill"></span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-                Avoir un Maikun
-            </div>
-            <span class="badge bg-primary rounded-pill"></span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-                Trouver autre chose
-            </div>
-            <span class="badge bg-primary rounded-pill"></span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-                Trouver autre chose
-            </div>
-            <span class="badge bg-primary rounded-pill"></span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-                Trouver autre chose
-            </div>
-            <span class="badge bg-primary rounded-pill"></span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-                Trouver autre chose
-            </div>
-            <span class="badge bg-primary rounded-pill"></span>
-        </li>
-    </ol>
+        </div>
+
+
+
+    </div>
 
 {% endblock %}
