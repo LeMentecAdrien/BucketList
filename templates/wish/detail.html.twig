@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1 class="m-4 text-center" >Wish - Détails</h1>
+    <h1 class="typo_jouer_espace m-4 text-center" >Wish - Détails</h1>
 
 
 
@@ -17,7 +17,10 @@
                         <p class="card-text"><strong>Author: </strong> {{ wishDetails.author }}</p>
                         <p class="card-text"><strong>Description: </strong> {{ wishDetails.description }}</p>
                         <p class="card-text"><strong>Created date: </strong>{{ wishDetails.dateCreated|format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY HH:mm") }}</p>
-                        <a href="/wish" class="btn btn-warning">Go back</a>
+                        <p class="card-text"><strong>Update date: </strong>{{ wishDetails.dateUpdated|format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY HH:mm") }}</p>
+                        <a href="/wish" class="btn btn-warning">Go back</a> <a href="{{ path('app_wish_update', {'id':wishDetails.id}) }}" class="btn btn-warning">Update</a> <a href="{{ path('app_wish_delete', {'id':wishDetails.id}) }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+
+
                     </div>
                 </div>
             </div>

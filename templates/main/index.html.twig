@@ -11,6 +11,23 @@
             <a href="/wish"><img src="{{ asset('img/bucket.jpg') }}" alt=""></a>
         </div>
     </div>
-    <h3 class="m-4 text-center">Le compte a rebour est lancé...👀</h3>
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+        <h3 class="m-4 text-center">Le compte à rebours est lancé...👀</h3>
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <br>
+
+
+        <div class="row">
+            <div class="col text-center">
+                <a class="btn btn-warning align-items-center border" type="button" href="{{ path('app_wish_new') }}">Ajouter un nouveau souhait</a>
+            </div>
+        </div>
+    </div>
+
+
+
 
 {% endblock %}

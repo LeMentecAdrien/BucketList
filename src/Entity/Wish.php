@@ -6,6 +6,7 @@ use App\Repository\WishRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Boolean;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: WishRepository::class)]
 #[ORM\HasLifecycleCallbacks()]
@@ -17,16 +18,19 @@ class Wish
     private ?int $id = null;
 
     #[ORM\Column(length: 250)]
+    #[Assert\NotBlank(message: 'Title required')]
     private ?string $title = null;
+
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: ' Sign up your wish')]
     private ?string $author = null;
 
     #[ORM\Column(nullable: true)]
-    private ?bool $isPublished = false;
+    private ?bool $isPublished = true;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateCreated = null;

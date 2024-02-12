@@ -2,40 +2,49 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="mt-4">New Wish</h1>
-        {{ form_start(form) }}
-        <table>
-            <div class="container">
+        <h1 class="typo_jouer_espace m-4">{{ editMode ? 'Edit Wish' : 'New Wish' }}</h1>
 
-                <tr>
-                    <td> {{ form_label(form.title) }}   </td>
-                    <br>
-                    <td> {{ form_widget(form.title) }} </td>
-                    <br>
-                    <td>{{ form_errors(form.title) }} </td>
-                    <br>
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        {{ form_start(form) }}
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    {{ form_label(form.title) }}<br>
+                                    {{ form_widget(form.title) }}<br>
+                                    <span class="forms-errors mb-3">{{ form_errors(form.title)}}</span>
+                                </div>
 
-                </tr>
-                <tr>
-                    <td> {{ form_label(form.description) }} </td>
-                    <br>
-                    <td> {{ form_widget(form.description) }} </td>
-                    <br>
-                </tr>
-                <tr>
-                    <td> {{ form_label(form.author) }} </td>
-                    <br>
-                    <td> {{ form_widget(form.author) }} </td>
-                    <br>
-                </tr>
+                                <br>
+                                <div class="col">
+                                    {{ form_label(form.author) }}<br>
+                                    {{ form_widget(form.author) }}<br>
+                                    <span class="forms-errors mb-3">{{ form_errors(form.author) }}</span><br>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    {{ form_label(form.description) }}<br>
+                                    {{ form_widget(form.description) }}<br>
+
+                                </div>
+
+                            </div>
+                            <div class="col">
+                                {{ form_label(form.isPublished) }}<br>
+                                {{ form_widget(form.isPublished) }}<br>
+                            </div>
+                        </div>
+                        {{ form_widget(form.submit) }}
+                        {{ form_end(form) }}
+                    </div>
+
+
+                </div>
             </div>
-
-        </table>
-        {{ form_end(form) }}
-
-
-        {#            <button type="submit" class="btn btn-primary">Enregistrer</button> #}
-
-
+        </div>
     </div>
 {% endblock %}
