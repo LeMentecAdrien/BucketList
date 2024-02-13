@@ -70,5 +70,5 @@ class WishController extends AbstractController
 
         return $this->redirectToRoute('app_wish');
     }
-
+//test
 }
