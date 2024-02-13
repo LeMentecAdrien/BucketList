@@ -38,6 +38,9 @@ class Wish
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateUpdated = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $posterFile = null;
+
 
 
 
@@ -117,6 +120,18 @@ class Wish
     public function setDateUpdated(): static
     {
         $this->dateUpdated = new \DateTime();
+
+        return $this;
+    }
+
+    public function getPosterFile(): ?string
+    {
+        return $this->posterFile;
+    }
+
+    public function setPosterFile(?string $posterFile): static
+    {
+        $this->posterFile = $posterFile;
 
         return $this;
     }

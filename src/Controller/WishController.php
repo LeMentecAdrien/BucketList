@@ -7,11 +7,13 @@ use App\Form\FormCreateType;
 use App\Repository\WishRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class WishController extends AbstractController
 {
@@ -33,13 +35,14 @@ class WishController extends AbstractController
 
         $wishesDetails = $wishRepository->find($id);
         return $this->render('wish/detail.html.twig', [
-            'wishDetails' => $wishesDetails
+            'wishDetails' => $wishesDetails,
+            'poster_dir' => $this->getParameter('poster_dir'),
         ]);
     }
 
     #[Route('/wish/new', name: 'app_wish_new')]
     #[Route('/wish/update/{id}', name: 'app_wish_update', requirements: ['id' => '\d+'])]
-    public function new(?Wish $wish, Request $request, EntityManagerInterface $entityManager): Response
+    public function new(?Wish $wish, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
 
         $isEditMode = $wish ? true : false;
@@ -49,6 +52,17 @@ class WishController extends AbstractController
         $form = $this->createForm(FormCreateType::class, $wish);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $dir = $this->getParameter('poster_dir');
+            if($form->get('posterFile')->getData() instanceof UploadedFile){
+                $posterFile = $form->get('posterFile')->getData();
+                $fileName =$slugger->slug($wish->getTitle()) . '-' . uniqid() . '.' . $posterFile->guessExtension();
+                $posterFile->move($dir, $fileName);
+                if($wish->getPosterFile() && \file_exists($dir. '/' . $wish->getPosterFile())) {
+                    unlink($dir . '/' . $wish->getPosterFile());
+                }
+
+                $wish->setPosterFile($fileName);
+            }
             $entityManager->persist($wish);
             $entityManager->flush();
             $this->addFlash('success', 'Le souhait a été enregistré');

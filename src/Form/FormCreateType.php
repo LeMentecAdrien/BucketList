@@ -5,11 +5,14 @@ namespace App\Form;
 use App\Entity\Wish;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class FormCreateType extends AbstractType
 {
@@ -52,13 +55,33 @@ class FormCreateType extends AbstractType
                     'class' => 'form-check-input'
                 ]
             ])
+
             ->add('submit', SubmitType::class, [
                 'label' => 'Enregistrer',
                 'attr' => [
                     'class' => 'btn btn-warning border m-2'
                 ]
-            ]);
+            ])
+            ->add('posterFile', FileType::class, [
+                'required' => false,
+                'mapped' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => "Ce format n'est pas autorisé",
+                        'maxSizeMessage' => "Ce fichier est trop lourd",
+                ])
+            ],
+                'help' => 'Upload an image (JPEG, JPG, PNG)',
+
+    ]);
     }
+    
 
     public function configureOptions(OptionsResolver $resolver): void
     {
