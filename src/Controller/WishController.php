@@ -7,6 +7,7 @@ use App\Form\FormCreateType;
 use App\Repository\WishRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,6 +54,10 @@ class WishController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $dir = $this->getParameter('poster_dir');
+//            $form->add('deleteImage', CheckboxType::class, [
+//                'required' => false,
+//                'mapped' => false,
+//            ]);
             if($form->get('posterFile')->getData() instanceof UploadedFile){
                 $posterFile = $form->get('posterFile')->getData();
                 $fileName =$slugger->slug($wish->getTitle()) . '-' . uniqid() . '.' . $posterFile->guessExtension();

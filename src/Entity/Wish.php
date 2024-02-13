@@ -44,6 +44,7 @@ class Wish
 
 
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -135,4 +136,6 @@ class Wish
 
         return $this;
     }
+
+
 }
