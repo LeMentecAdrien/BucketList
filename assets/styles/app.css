@@ -64,8 +64,8 @@ body {
 }
 
 .rounded-image img {
-    width: 400px; /* Ajustez la taille selon vos besoins */
-    height: 400px; /* Ajustez la taille selon vos besoins */
+    width: 450px; /* Ajustez la taille selon vos besoins */
+    height: 450px; /* Ajustez la taille selon vos besoins */
     object-fit: cover;
     transition: all 0.3s ease; /* Transition pour le fondu */
 }
@@ -114,7 +114,7 @@ color: white;
 
 .rounded-fade img {
     border-radius: 15px;
-    width: 45%;
+    width: 50%;
     height: auto;
 
     transition: transform 0.3s ease-in-out;
@@ -134,3 +134,49 @@ color: white;
 
 
 }
+
+.btn-custom:hover {
+    background-color: #ffc107;
+    color: white;
+    border-color: #000000;
+}
+.btn-danger{
+    color: black;
+}
+.btn-custom-delete:hover {
+    color: white;
+    border-color: #000000;
+}
+
+footer{
+    line-height: 48px;
+    height: 48px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: black;
+
+}
+
+.body-custom{
+    margin-bottom: 2rem;
+    padding-bottom: 48px;
+}
+
+.preview-tooltip {
+    position: absolute;
+    top: -50px;
+    left: 100%;
+    display: none;
+    z-index: 1;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+.list-group-item:hover .preview-tooltip {
+    display: block;
+}
+

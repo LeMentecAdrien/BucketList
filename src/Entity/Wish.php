@@ -6,6 +6,7 @@ use App\Repository\WishRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Boolean;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: WishRepository::class)]
@@ -40,6 +41,10 @@ class Wish
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $posterFile = null;
+
+    #[Assert\NotNull(message: 'Category required')]
+    #[ORM\ManyToOne(inversedBy: 'relation')]
+    private ?Category $category = null;
 
 
 
@@ -133,6 +138,18 @@ class Wish
     public function setPosterFile(?string $posterFile): static
     {
         $this->posterFile = $posterFile;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

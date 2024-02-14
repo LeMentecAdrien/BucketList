@@ -16,15 +16,16 @@
 </head>
 <body>
 <header>
-    <div class="container-fluid Illustration-5-hex">
-        <div class="d-flex align-items-center text-white w-100">
-            <a href="{{ path('app_main') }}" style=" text-decoration: none">
-                <img src="{{ asset('img/logo1.png') }}" alt="" class="m-1"></a>
-            <a href="{{ path('app_main') }}" style="text-decoration: none; color: inherit;"><h3 class="m-0" >Bucket-List</h3></a>
-
+    <a href="{{ path('app_main') }}" style="text-decoration: none; color: inherit;">
+        <div class="container-fluid Illustration-5-hex">
+            <div class="d-flex align-items-center text-white w-100">
+                <img src="{{ asset('img/logo1.png') }}" alt="" class="m-1">
+                <h3 class="m-0">Bucket-List</h3>
+            </div>
         </div>
+    </a>
 
-        <nav class="navbar navbar-expand-lg Illustration-5-hex">
+    <nav class="navbar navbar-expand-lg Illustration-5-hex">
             <div class="container-fluid">
                 <button class="white-icon-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -60,12 +61,14 @@
     {% endfor %}
 {% endfor %}
 
+<div class="body-custom">{% block body %}
 
-{% block body %}
 
-{% endblock %}
 
-<footer class="footer mt-auto py-1 Illustration-5-hex position">
+
+{% endblock %}</div>
+
+<footer class="">
     <div class="container">
         <p style="text-align: center" class="text-light">&copy Bucket-List - {{ 'now'|date("Y") }}</p>
     </div>

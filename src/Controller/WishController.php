@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Wish;
 use App\Form\FormCreateType;
+use App\Repository\CategoryRepository;
 use App\Repository\WishRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,6 +29,7 @@ class WishController extends AbstractController
 
         return $this->render('wish/list.html.twig', [
             'wish' => $wishes,
+            'poster_dir' => $this->getParameter('poster_dir'),
         ]);
     }
 
@@ -38,6 +41,7 @@ class WishController extends AbstractController
         return $this->render('wish/detail.html.twig', [
             'wishDetails' => $wishesDetails,
             'poster_dir' => $this->getParameter('poster_dir'),
+
         ]);
     }
 
@@ -50,7 +54,9 @@ class WishController extends AbstractController
         if(!$isEditMode) {
             $wish = new Wish();
         }
+
         $form = $this->createForm(FormCreateType::class, $wish);
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $dir = $this->getParameter('poster_dir');
