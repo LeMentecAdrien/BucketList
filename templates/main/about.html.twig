@@ -4,28 +4,110 @@
 
 {% block body %}
 
-    <h1 class="typo_jouer_espace m-4">Bienvenue sur About Us</h1>
+    <h1 class="typo_jouer_espace m-4">About the BucketList</h1>
+
+    <div class="container mb-3">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <p>Je le répète souvent, une bucket list, c’est avant tout une liste d’envies personnelles et de
+                            rêves qui n’appartiennent qu’à vous. Ce que ça n’est surtout pas, c’est une liste de «
+                            choses qu’il faut faire dans la vie ».</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-<div class="list-unstyled container card-custom ">
-
-    <div class="card">
-        <div class="card-body">
-                <li class="list-group-item d-flex justify-content-between align-items-start btn btn-warning">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-
-                        <div class="ms-auto">
-                            <p>Lorem ipsum dolor sit amet. Et aperiam voluptatem qui iusto internos hic sint alias aut enim quia ut odit consequuntur. Ab atque doloribus qui accusantium veritatis ad voluptatum vitae est porro asperiores aut enim cumque est architecto dignissimos eum aspernatur nulla. Eum aliquid voluptatem eum aspernatur deleniti ut omnis magnam ab esse beatae sed tenetur eius eos veniam aperiam quo suscipit nihil. Aut beatae cupiditate aut numquam enim in eius doloremque.
-
-                                Sed nostrum omnis ut vitae possimus eos impedit incidunt et soluta minus. In similique sunt et esse deleniti eum eligendi quos. Et corrupti reprehenderit ex nemo aspernatur et dolorem perspiciatis et enim numquam et laudantium facilis ut possimus excepturi.
-
-                                Sit eius ipsum cum nisi tempore At perspiciatis dolores non explicabo soluta ut nesciunt fugiat ab laudantium dolorum vel omnis autem! Non labore deleniti non nihil quis vel velit Quis quo dolores omnis? Ut veniam recusandae est nostrum dolorum sed inventore dolores ea nesciunt adipisci non optio corrupti est ducimus molestiae?</p>
 
 
+
+    {#    <div class="container"> #}
+    {#        <div class="row justify-content-center"> #}
+    {#            <div class="col-md-12 col-lg-12"> #}
+    {#                <div class="card card-custom align-items-center"> #}
+    {#                    <div class="slideshow-container"> #}
+    {#                        <div class="mySlides fade"> #}
+    {#                            <img src="{{ asset('img/diapo/a.jpg') }}" style="width:80%"> #}
+    {#                        </div> #}
+
+    {#                        <div class="mySlides fade"> #}
+    {#                            <img src="{{ asset('img/diapo/H.jpg') }}" style="width:80%"> #}
+    {#                        </div> #}
+
+    {#                        <div class="mySlides fade"> #}
+    {#                            <img src="{{ asset('img/diapo/m.jpg') }}" style="width:80%"> #}
+    {#                        </div> #}
+    {#                        <div class="mySlides fade"> #}
+    {#                            <img src="{{ asset('img/diapo/mer.jpg') }}" style="width:80%"> #}
+    {#                        </div> #}
+    {#                    </div> #}
+
+    {#                    <div style="text-align:center"> #}
+    {#                        <span class="dot"></span> #}
+    {#                        <span class="dot"></span> #}
+    {#                        <span class="dot"></span> #}
+    {#                    </div> #}
+    {#                </div> #}
+    {#            </div> #}
+    {#        </div> #}
+    {#    </div> #}
+
+    <div class="container mb-3">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mx-auto" style="max-width: 500px;">
+                            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="1500">
+                                        <img src="{{ asset('img/diapo/1.jpg') }}" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="{{ asset('img/diapo/H.jpg') }}" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('img/diapo/2.jpg') }}" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('img/diapo/3.jpg') }}" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('img/diapo/4.jpg') }}" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </li>
+                </div>
             </div>
+        </div>
     </div>
-</div>
+
+
+    <script>
+        // Démarrer le carrousel automatiquement
+        $(document).ready(function(){
+            $('#carouselExampleInterval').carousel({
+                interval: 1500, // Définir la vitesse de défilement en millisecondes (par exemple, 2000 pour 2 secondes)
+                pause: 'hover', // Mettre en pause le carrousel lorsque la souris survole
+                wrap: true // Activer le défilement en boucle
+            });
+        });
+
+    </script>
+
 {% endblock %}

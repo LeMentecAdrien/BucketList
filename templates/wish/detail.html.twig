@@ -32,10 +32,15 @@
                             date: </strong>{{ wishDetails.dateUpdated|format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY HH:mm") }}
                             </p>{% endif %}
                         <a href="/wish" class="btn btn-warning btn-custom">Go back</a>
-                        <a href="{{ path('app_wish_update', {'id':wishDetails.id}) }}"
-                           class="btn btn-warning btn-custom">Update</a>
+
+                        {% if is_granted('ROLE_USER') %}
+                        <a href="{{ path('app_wish_update', {'id':wishDetails.id}) }}" class="btn btn-warning btn-custom">Update</a>
+                                {%  endif %}
+
+                        {% if is_granted('ROLE_CONTRIB') %}
                         <a href="{{ path('app_wish_delete', {'id':wishDetails.id}) }}" class="btn btn-danger btn-custom-delete"
                            onclick="return confirm('Are you sure?')">Delete</a>
+                        {%  endif %}
                     </div>
                 </div>
             </div>

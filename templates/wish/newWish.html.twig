@@ -14,7 +14,7 @@
                                 <div class="col">
                                     {{ form_label(form.title) }}<br>
                                     {{ form_widget(form.title) }}<br>
-                                    <span class="forms-errors mb-3">{{ form_errors(form.title)}}</span>
+                                    <span class="forms-errors mb-3">{{ form_errors(form.title) }}</span>
                                 </div>
 
                                 <br>
@@ -35,26 +35,48 @@
                                     <div class="col">
                                         {{ form_label(form.posterFile) }}<br>
                                         {{ form_widget(form.posterFile) }}<br>
+                                    </div>
+<div>
+    <img class="preview = 20%" src="{{ asset(poster_dir ~ '/' ~ wish.posterFile) }}" width="100">
+</div>
 
+                                    <div class="col">
+                                        {{ form_label(form.deleteImg) }}<br>
+                                        {{ form_widget(form.deleteImg) }}<br>
                                     </div>
 
-                            </div>
+                                </div>
                                 <div class="col">
                                     {{ form_label(form.category) }}<br>
                                     {{ form_widget(form.category) }}<br>
                                 </div>
-                            <div class="col">
-                                {{ form_label(form.isPublished) }}<br>
-                                {{ form_widget(form.isPublished) }}<br>
+                                <div class="col">
+                                    {{ form_label(form.isPublished) }}<br>
+                                    {{ form_widget(form.isPublished) }}<br>
+                                </div>
                             </div>
+                            {{ form_widget(form.submit) }}
+                            {{ form_end(form) }}
                         </div>
-                        {{ form_widget(form.submit) }}
-                        {{ form_end(form) }}
+
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
+
+
+    <script>
+        let checkbox = document.getElementById('form_create_deleteImg');
+        let fileInput = document.getElementById('form_create_posterFile');
+        checkbox.addEventListener('change', function () {
+            if (checkbox.checked) {
+                fileInput.setAttribute('disabled', 'disabled');
+            } else {
+                fileInput.removeAttribute('disabled');
+            }
+        });
+    </script>
+
+
 {% endblock %}

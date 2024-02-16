@@ -38,12 +38,30 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_about') }}">About Us</a>
                         </li>
+                        {% if is_granted('ROLE_USER') %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_wish') }}">Wishes List</a>
                         </li>
+                        {%  endif %}
+                        {% if is_granted('ROLE_USER') %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_wish_new') }}">Create new Wish</a>
                         </li>
+                        {%  endif %}
+
+                        {% if is_granted('IS_AUTHENTICATED') %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Logout</a>
+                            </li>
+                        {%  else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register">Sign in</a>
+                            </li>
+                        {%  endif %}
+
 
 
                     </ul>

@@ -8,6 +8,7 @@ use App\Form\FormCreateType;
 use App\Repository\CategoryRepository;
 use App\Repository\WishRepository;
 
+use App\Service\censurator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -16,8 +17,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
+#[IsGranted('ROLE_USER')]
 class WishController extends AbstractController
 {
 
@@ -32,6 +35,7 @@ class WishController extends AbstractController
             'poster_dir' => $this->getParameter('poster_dir'),
         ]);
     }
+
 
     #[Route('/detail/{id}', name: 'detail', requirements: ['id' => '\d+'])]
     public function detail(int $id, wishRepository $wishRepository): Response
@@ -60,19 +64,22 @@ class WishController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $dir = $this->getParameter('poster_dir');
-//            $form->add('deleteImage', CheckboxType::class, [
-//                'required' => false,
-//                'mapped' => false,
-//            ]);
-            if($form->get('posterFile')->getData() instanceof UploadedFile){
+
+
+            if ($form->get('posterFile')->getData() instanceof UploadedFile) {
                 $posterFile = $form->get('posterFile')->getData();
-                $fileName =$slugger->slug($wish->getTitle()) . '-' . uniqid() . '.' . $posterFile->guessExtension();
+                $fileName = $slugger->slug($wish->getTitle()) . '-' . uniqid() . '.' . $posterFile->guessExtension();
                 $posterFile->move($dir, $fileName);
-                if($wish->getPosterFile() && \file_exists($dir. '/' . $wish->getPosterFile())) {
-                    unlink($dir . '/' . $wish->getPosterFile());
+                $wish->setPosterFile($fileName);
+
+            }
+            if ($form->get('deleteImg')->getData() === true && $wish->getPosterFile() !== null) {
+                $imageTrue = $dir . '/' . $wish->getPosterFile();
+                if (\file_exists($imageTrue)) {
+                    unlink($imageTrue);
+                    $wish->setPosterFile(null);
                 }
 
-                $wish->setPosterFile($fileName);
             }
             $entityManager->persist($wish);
             $entityManager->flush();
@@ -83,9 +90,35 @@ class WishController extends AbstractController
         return $this->render('wish/newWish.html.twig', [
             'form' => $form,
             'editMode' => $isEditMode,
+            'wish' => $wish
         ]);
     }
 
+
+
+//            if($form->get('posterFile')->getData() instanceof UploadedFile){
+//                $posterFile = $form->get('posterFile')->getData();
+//                $fileName =$slugger->slug($wish->getTitle()) . '-' . uniqid() . '.' . $posterFile->guessExtension();
+//                $posterFile->move($dir, $fileName);
+//                if($wish->getPosterFile() && \file_exists($dir. '/' . $wish->getPosterFile())) {
+//                    unlink($dir . '/' . $wish->getPosterFile());
+//                }
+//
+//                $wish->setPosterFile($fileName);
+//            }
+//            $entityManager->persist($wish);
+//            $entityManager->flush();
+//            $this->addFlash('success', 'Le souhait a été enregistré');
+//            return $this->redirectToRoute('app_wish');
+//        }
+//
+//        return $this->render('wish/newWish.html.twig', [
+//            'form' => $form,
+//            'editMode' => $isEditMode,
+//        ]);
+//    }
+
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/wish/delete/{id}', name: 'app_wish_delete', requirements: ['id' => '\d+'])]
     public function delete(Wish $wish, Request $request, EntityManagerInterface $em): Response
 {

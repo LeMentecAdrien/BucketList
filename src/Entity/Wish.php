@@ -2,6 +2,10 @@
 
 namespace App\Entity;
 
+
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\WishRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,11 +15,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: WishRepository::class)]
 #[ORM\HasLifecycleCallbacks()]
+#[ApiResource]
 class Wish
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[ApiFilter(SearchFilter::class, properties: ['name' => 'partial'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 250)]
@@ -32,6 +38,7 @@ class Wish
 
     #[ORM\Column(nullable: true)]
     private ?bool $isPublished = true;
+
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateCreated = null;
@@ -153,6 +160,7 @@ class Wish
 
         return $this;
     }
+
 
 
 }

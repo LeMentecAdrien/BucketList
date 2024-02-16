@@ -180,3 +180,7 @@ footer{
     display: block;
 }
 
+.card-custom {
+    position: relative;
+    overflow: hidden;
+}
