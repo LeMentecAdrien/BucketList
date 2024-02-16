@@ -108,7 +108,7 @@ class WishController extends AbstractController
 //            }
 //            $entityManager->persist($wish);
 //            $entityManager->flush();
-//            $this->addFlash('success', 'Le souhait a été enregistré');
+//            $this->addFlash('success', 'Le souhait a été enregistrer');
 //            return $this->redirectToRoute('app_wish');
 //        }
 //
